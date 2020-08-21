@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Customer Segmentation Report</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Customer Segmentation</h1>
+            <div class="container">
+                <div class="container">
+                    <h3>The Problem</h3>
+                    <div class="container">
+                        <p>
+                            Identify different groups of customers from a dataset based on some features. 
+                            Create suitable features by performing the data science pipeline 
+                            (Exploratory Data Analysis, Data Cleaning, Feature Engineering, etc...).
+                        </p>
+                    </div>
+                    <div class="container">
+                        <h3>The Dataset</h3>
+                        <div class="container">
+                            <p>
+                                The dataset can be found 
+                                <a href="https://www.kaggle.com/sergeymedvedev/customer_segmentation">here</a>
+                                . It is a collection of individual purchases from an online ecommer store
+                                <br>
+                                
+                                The columns are:
+                            </p>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Invoice Number
+                                </li>
+                                <li class="list-group-item">
+                                    Stock Code
+                                </li>
+                                <li class="list-group-item">
+                                    Description              
+                                </li>
+                                <li class="list-group-item">
+                                    Quantity                
+                                </li>
+                                <li class="list-group-item">
+                                    Invoice Date                 
+                                </li>
+                                <li class="list-group-item">
+                                    Unit Price              
+                                </li>
+                                <li class="list-group-item">
+                                    Customer ID
+                                </li>
+                                <li class="list-group-item">
+                                    Country
+                                </li>
+                            </ul>
+                            <p>
+                                Summary:
+                            </p>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    4,373 identified customers
+                                </li>
+                                <li class="list-group-item">
+                                    3,600 unique products
+                                </li>
+                                <li class="list-group-item">
+                                    2,190 invoices
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="contatiner">
+                        <h3>Grouping Customers by Spending Behavior</h3>
+                        <div class="container">
+                            <div class="container" style="width: 49%; display: inline-block;">
+                                <p>
+                                    Types of spending behavior:
+                                </p>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Customer's total spend
+                                    </li>
+                                    <li class="list-group-item">
+                                        Number of purchases
+                                    </li>
+                                    <li class="list-group-item">
+                                        Recency of purchases
+                                    </li>
+                                </ul>
+                                <p>
+                                    A customers **total spend** is the total amount of money spend by the customer at the store. 
+                                    A customer that makes very large purchases is obviously a valuable customer, but if those purchases are very infrequent
+                                    or in the case the customer only made one large purchase, that customer is not as valuable as a customer that makes 
+                                    frequent purchases. That is why spending behavior takes into account the number of purchases a customer makes.
+                                    <br>
+                                    In this case we will not use the recency of a customer's purchases to evaluate them because of the limited time frame of this dataset.
+                                    <br>
+                                    The following graph visualizes the relationship between a customer's spend and their purchase frequency. The further right a customer 
+                                    is means they make frequent purchases and the further up they are means they spend more money per purchase. Thus the most valuable customers 
+                                    appear more up and to the right.
+                                </p>
+                                <iframe src="plots/plot_customer_spend_v_freq.html"></iframe>
+                            </div>
+                            <div class="container" style="width: 49%; display: inline-block;"> 
+                                <h6>
+                                    80/20 Rule
+                                </h6>
+                                <p>
+                                    The 80/20 rule is a common rule applied to the topic of customer segmentation. It means that the top 20 percent of customers 
+                                    (by total money spent) account for 80 percent of all revenue. I applied it to this dataset and found it very close to true. 
+                                </p>
+                                <!-- FIG2 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h3>Time of Year</h3>
+                        <div class="container">
+                            <p>
+                                This dataset only contains purchases made in 2011, but it covers the entire year. I noticed that there were more customers 
+                                shopping at the end of the year than any other time. There is a seasonal bump from september to December in the total number of
+                                customers buying products. This is the bigger reason that I did not choose recency of purchases to be a feature, because most 
+                                customers would be considered recent buyers when in reality most of them only came to buy during the end of the year.
+                            </p>    
+                            <!-- FIG3 -->
+                        </div>
+
+                    </div>
+                    <div class="container">
+                        <h3>Time of Day/Week</h3>
+                        <div class="container">
+                            <p>
+                                I analyzed the same metric for each hour on each of the days of the week and found that there were similar peak hours 
+                                for total customers making purchases every day (Except for Saturday when I assume the store is not open). Thursday has the most
+                                and Sunday has the least. 
+                            </p>
+                            <!-- Unique Customers by Time of Day for Each Weekday -->
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h3>Customer Segments by KMeans Clustering</h3>
+                        <div class="container">
+                            <p>
+                                I used KMeans clustering to group the customers into teirs of value. I used what is called the "elbow method" to determine the optimal
+                                number for k. The elbow method is simply to graph the SSE for each k which produces a line that looks somewhat like an arm, and pick the k
+                                that would be the elbow for that arm. In this case k = 3 was the best value.
+                            </p>
+                            <!-- KMeans SSE Walk -->
+                            <p>                
+                                This shows the 3 clusters of customers based on their standardized values for spend and purchase frequency. Group 2 customers are
+                                the highest value customers, Group 1 are the mid-value customers, and Group 0 are the low-value customers.
+                            </p>
+                            <!-- KMeans Customer Segments -->
+                            <p>
+                                This graph shows the relative size of each of the groups.
+                            </p>
+                            <!-- Customer Segment Sizes -->
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h3>Seasonal Customers</h3>
+                        <div class="container">
+                            <p>
+                                I defined a "seasonal" customer to be one that does 90 percent of their shopping in the last 4 months of the year (Sept-Dec). 
+                                After splitting the customers into seasonal and non-seasonal customers, I broke down those groups by customer value and found 
+                                that almost all of the seasonal customers are low value customers. This makes sense because low value customers buy less frequently
+                                and if they are making 90 percent of their purchases at the end of the year they are not likely to be purchasing frequently relative 
+                                to customers that make purchases all year.
+                            </p>
+                            <!-- Customer Segments by Season -->
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h3>Customers Favourite Weekday</h3>
+                        <div class="container">
+                            <p>
+                                I defined a customers "favourite" day by the day in which the customer made the most purchases out of the week. The reasoning behind this 
+                                is that it would probably be the customer's most likely day to shop in he future. I then broke down the customers by value on each of their 
+                                favourite days. There is a bump on thursdays in high value customers over the other days, and customers of all types shop less on friday 
+                                and sunday. 
+                            </p>
+                            <!-- Customer Segments by Weekday -->
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h3>Insights</h3>
+                        <div class="container">
+                            <p>
+                                The store can focus on retaining its high value and mid value customers.
+                                <br>
+                                The store could promote holidays or events outside of the end of year season to low-value, seasonal, customers. This could lead 
+                                to them purchasing more frequently and becoming mid-value customers.
+                                <br>
+                                Lastly, The store could have weekend promotions to encourage customers to shop on friday or Sunday since those are the days when the 
+                                customers shop the least.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
