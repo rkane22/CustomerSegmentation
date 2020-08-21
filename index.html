@@ -7,19 +7,28 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            iframe {
+                border-style: hidden;
+                height: 500px;
+                width: 100%;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
             <h1>Customer Segmentation</h1>
             <div class="container">
                 <div class="container">
-                    <h3>The Problem</h3>
                     <div class="container">
-                        <p>
-                            Identify different groups of customers from a dataset based on some features. 
-                            Create suitable features by performing the data science pipeline 
-                            (Exploratory Data Analysis, Data Cleaning, Feature Engineering, etc...).
-                        </p>
+                        <h3>The Problem</h3>
+                        <div class="container">
+                            <p>
+                                Identify different groups of customers from a dataset based on some features. 
+                                Create suitable features by performing the data science pipeline 
+                                (Exploratory Data Analysis, Data Cleaning, Feature Engineering, etc...).
+                            </p>
+                        </div>
                     </div>
                     <div class="container">
                         <h3>The Dataset</h3>
@@ -124,7 +133,7 @@
                                 customers buying products. This is the bigger reason that I did not choose recency of purchases to be a feature, because most 
                                 customers would be considered recent buyers when in reality most of them only came to buy during the end of the year.
                             </p>    
-                            <!-- FIG3 -->
+                            <iframe class="embed-responsive-item" src="plots/plot_unique_customers_per_month.html" allowfullscreen></iframe>
                         </div>
 
                     </div>
@@ -136,7 +145,7 @@
                                 for total customers making purchases every day (Except for Saturday when I assume the store is not open). Thursday has the most
                                 and Sunday has the least. 
                             </p>
-                            <!-- Unique Customers by Time of Day for Each Weekday -->
+                            <iframe class="embed-responsive-item" src="plots/plot_customers_per_time_of_day_per_weekday.html" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="container">
@@ -147,16 +156,16 @@
                                 number for k. The elbow method is simply to graph the SSE for each k which produces a line that looks somewhat like an arm, and pick the k
                                 that would be the elbow for that arm. In this case k = 3 was the best value.
                             </p>
-                            <!-- KMeans SSE Walk -->
+                            <iframe class="embed-responsive-item" src="plots/plot_kmeans_sse.html" allowfullscreen></iframe>
                             <p>                
                                 This shows the 3 clusters of customers based on their standardized values for spend and purchase frequency. Group 2 customers are
                                 the highest value customers, Group 1 are the mid-value customers, and Group 0 are the low-value customers.
                             </p>
-                            <!-- KMeans Customer Segments -->
+                            <iframe class="embed-responsive-item" src="plots/plot_customer_segments_kmeans.html" allowfullscreen></iframe>
                             <p>
                                 This graph shows the relative size of each of the groups.
                             </p>
-                            <!-- Customer Segment Sizes -->
+                            <iframe class="embed-responsive-item" src="plots/plot_customer_segments_sizes.html" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="container">
@@ -169,7 +178,7 @@
                                 and if they are making 90 percent of their purchases at the end of the year they are not likely to be purchasing frequently relative 
                                 to customers that make purchases all year.
                             </p>
-                            <!-- Customer Segments by Season -->
+                            <iframe class="embed-responsive-item" src="plots/plot_seasonal_customer_segments.html" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="container">
@@ -181,7 +190,7 @@
                                 favourite days. There is a bump on thursdays in high value customers over the other days, and customers of all types shop less on friday 
                                 and sunday. 
                             </p>
-                            <!-- Customer Segments by Weekday -->
+                            <iframe class="embed-responsive-item" src="plots/plot_customer_segments_weekdays.html" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="container">
