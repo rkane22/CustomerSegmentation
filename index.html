@@ -151,21 +151,25 @@
                     <div class="container">
                         <h3>Customer Segments by KMeans Clustering</h3>
                         <div class="container">
-                            <p>
-                                I used KMeans clustering to group the customers into teirs of value. I used what is called the "elbow method" to determine the optimal
-                                number for k. The elbow method is simply to graph the SSE for each k which produces a line that looks somewhat like an arm, and pick the k
-                                that would be the elbow for that arm. In this case k = 3 was the best value.
-                            </p>
-                            <iframe class="embed-responsive-item" src="plots/plot_kmeans_sse.html" allowfullscreen></iframe>
-                            <p>                
-                                This shows the 3 clusters of customers based on their standardized values for spend and purchase frequency. Group 2 customers are
-                                the highest value customers, Group 1 are the mid-value customers, and Group 0 are the low-value customers.
-                            </p>
-                            <iframe class="embed-responsive-item" src="plots/plot_customer_segments_kmeans.html" allowfullscreen></iframe>
+                            <div class="container" style="width: 49%; display: inline-block;">
+                                <p>
+                                    I used KMeans clustering to group the customers into teirs of value. I used what is called the "elbow method" to determine the optimal
+                                    number for k. The elbow method is simply to graph the SSE for each k which produces a line that looks somewhat like an arm, and pick the k
+                                    that would be the elbow for that arm. In this case k = 3 was the best value.
+                                </p>
+                                <iframe class="embed-responsive-item" src="plots/plot_kmeans_sse.html" allowfullscreen></iframe>
+                            </div>
+                            <div class="container" style="width: 49%; display: inline-block;">
+                                <p>                
+                                    This shows the 3 clusters of customers based on their standardized values for spend and purchase frequency. Group 2 customers are
+                                    the highest value customers, Group 1 are the mid-value customers, and Group 0 are the low-value customers.
+                                </p>
+                                <iframe class="embed-responsive-item" src="plots/plot_customer_segments_kmeans.html" allowfullscreen></iframe>
+                            </div>
                             <p>
                                 This graph shows the relative size of each of the groups.
                             </p>
-                            <iframe class="embed-responsive-item" src="plots/plot_customer_segments_sizes.html" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="plots/plot_customer_segment_sizes.html" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="container">
